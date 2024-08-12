@@ -1,0 +1,23 @@
+{
+    "name": "dss/m2-lazy-image-loader",
+    "description": "Dss Lazy Image Loader with Magento",
+    "type": "magento2-module",
+    "version": "0.0.1",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "php": "^8.1",
+        "magento/product-community-edition": "^2.4.5",
+        "dss/m2-core": "^0.0.1"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Dss\\LazyImageLoader\\": ""
+        }
+    }
+}
