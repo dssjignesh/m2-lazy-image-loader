@@ -20,8 +20,18 @@ define([
         _create: function () {
             var options = this.options;
             var threshold = parseInt(options.threshold);
+            var lazyImageUrl = options.lazyImageUrl;
+            var loadingWidth = options.loadingWidth;
 
             $(document).ready(function() {
+                var style = `
+                img.lazy {
+                     background: url(${lazyImageUrl}) no-repeat;
+                     background-size: ${loadingWidth}px;
+                     background-position: center;
+                     width: 100%;
+                 }`;
+                $('<style>').prop('type', 'text/css').html(style).appendTo('head');
                 $("img.lazy").unveil(threshold);
             });
 

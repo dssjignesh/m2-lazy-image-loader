@@ -24,25 +24,19 @@
 $helper = $block->getHelper();
 $escaper->escapeHtml($helper->getFullActionName());
 $threshold = $helper->getThreshold();
+$lazyImageUrl = $escaper->escapeHtml($helper->getLazyImage());
+$loadingWidth = $escaper->escapeHtml($helper->getLoadingWidth());
 ?>
 <?php if ($helper->isEnabled()): ?>
-    <style>
-        img.lazy {
-            background: url(<?= $escaper->escapeHtml($helper->getLazyImage()); ?>) no-repeat;
-            background-size: <?= $escaper->escapeHtml($helper->getLoadingWidth()); ?>px;
-            background-position: center;
-            width: 100%
-        }
-    </style>
-
     <script type="text/x-magento-init">
         {
             "*": {
                 "Dss_LazyImageLoader/js/lazy_load": {
-                    "threshold": "<?= /* @noEscape */ $threshold; ?>"
+                    "threshold": "<?= /* @noEscape */ $threshold; ?>",
+                    "lazyImageUrl": "<?= /* @noEscape */ $lazyImageUrl; ?>",
+                    "loadingWidth": "<?= /* @noEscape */ $loadingWidth; ?>"
                 }
             }
         }
     </script>
-
 <?php endif; ?>
