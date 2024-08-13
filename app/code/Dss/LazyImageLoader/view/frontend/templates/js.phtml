@@ -1,0 +1,42 @@
+<?php
+/**
+ * Digit Software Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category  Dss
+ * @package   Dss_LazyImageLoader
+ * @author    Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+?>
+<?php
+/**
+ * LazyImageLoader block
+ *
+ * @var  $block  \Dss\LazyImageLoader\Block\LazyLoad
+ */
+?>
+<?php
+$helper = $block->getHelper();
+$escaper->escapeHtml($helper->getFullActionName());
+$threshold = $helper->getThreshold();
+$lazyImageUrl = $escaper->escapeHtml($helper->getLazyImage());
+$loadingWidth = $escaper->escapeHtml($helper->getLoadingWidth());
+?>
+<?php if ($helper->isEnabled()): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Dss_LazyImageLoader/js/lazy_load": {
+                    "threshold": "<?= /* @noEscape */ $threshold; ?>",
+                    "lazyImageUrl": "<?= /* @noEscape */ $lazyImageUrl; ?>",
+                    "loadingWidth": "<?= /* @noEscape */ $loadingWidth; ?>"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>
